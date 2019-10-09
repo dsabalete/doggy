@@ -5,7 +5,7 @@ export default class BreedList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h2>Breed List</h2>
         <div>
           {

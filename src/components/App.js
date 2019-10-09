@@ -7,7 +7,6 @@ import './App.css'
 export default class App extends Component {
   state = {
     breeds: [],
-    breedsNum: [],
     isLoading: true
   }
 
@@ -26,19 +25,24 @@ export default class App extends Component {
   async componentDidMount() {
     const breeds = await this.fetchAllBreeds()
 
-    breeds.forEach(async breed =>
-      await this.getNumImagesBreed(breed)
+    let calls = 0
+
+    breeds.forEach(async (breed, index) => {
+      calls++
+      return await this.getNumImagesBreed(breed)
         .then(num => {
+          calls--
           this.setState(prevState => {
             let arr = prevState.breeds
             arr.push({ name: breed, num: num })
             return {
               ...prevState,
-              breeds: arr
+              breeds: arr,
+              isLoading: calls !== 0
             }
           })
         })
-    )
+    })
   }
 
   renderBreedList() {
@@ -60,7 +64,7 @@ export default class App extends Component {
     return (
       <div className="container" >
         {
-          this.state.breeds.length === 0 ?
+          this.state.isLoading ?
             <Loading /> :
             <div className="row">
 

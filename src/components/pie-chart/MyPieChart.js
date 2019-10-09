@@ -14,7 +14,7 @@ export default class MyPieChart extends Component {
                 return a.num - b.num
             })
             .reverse()
-            .slice(1, 11)
+            .slice(0, 10)
     }
 
     render() {
