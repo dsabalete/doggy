@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import BreedItem from './breed-item/BreedItem'
+import BreedList from './breed-list/BreedList'
 import Loading from './loading/Loading'
 import MyPieChart from './pie-chart/MyPieChart'
 import './App.css'
@@ -26,7 +26,6 @@ export default class App extends Component {
     const breeds = await this.fetchAllBreeds()
 
     let calls = 0
-
     breeds.forEach(async (breed, index) => {
       calls++
       return await this.getNumImagesBreed(breed)
@@ -45,21 +44,6 @@ export default class App extends Component {
     })
   }
 
-  renderBreedList() {
-    return (
-      <div>
-        <h2>Breed List</h2>
-        <div>
-          {
-            this.state.breeds.map((breed, index) =>
-              <BreedItem key={index} item={breed} />
-            )
-          }
-        </div>
-      </div>
-    )
-  }
-
   render() {
     return (
       <div className="container" >
@@ -67,17 +51,8 @@ export default class App extends Component {
           this.state.isLoading ?
             <Loading /> :
             <div className="row">
-
-              <div className="col-sm-6">
-                {
-                  this.renderBreedList()
-                }
-              </div>
-
-              <div className="col-sm-6">
-                <MyPieChart data={this.state.breeds} />
-              </div>
-
+              <BreedList list={this.state.breeds} />
+              <MyPieChart data={this.state.breeds} />
             </div>
         }
       </div>

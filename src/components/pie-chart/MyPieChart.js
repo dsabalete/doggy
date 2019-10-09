@@ -20,7 +20,7 @@ export default class MyPieChart extends Component {
     render() {
         const top10breeds = this.getTop10()
         return (
-            <div>
+            <div className="col-sm-6">
                 <h2>Top 10 famous breeds</h2>
                 <PieChart
                     data={
