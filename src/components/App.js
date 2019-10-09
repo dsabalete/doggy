@@ -10,7 +10,7 @@ function App() {
           <BreedList />
         </div>
         <div className="col-sm-6">
-          Another thing
+          PieChart
         </div>
       </div>
 
