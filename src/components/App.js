@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react'
 import BreedList from './breed-list/BreedList'
-import './App.css';
+import './App.css'
 
-function App() {
-  return (
-    <div className="container">
-      <div className="row">
-        <div className="col-sm-6">
-          <BreedList />
+export default class App extends Component {
+  state = {
+    isLoading: true
+  }
+
+  render() {
+    return (
+      <div className="container" >
+        <div className="row">
+          <div className="col-sm-6">
+            <BreedList />
+          </div>
+          <div className="col-sm-6">
+            PieChart
+          </div>
         </div>
-        <div className="col-sm-6">
-          PieChart
-        </div>
+
       </div>
-
-    </div>
-  );
+    );
+  }
 }
-
-export default App;

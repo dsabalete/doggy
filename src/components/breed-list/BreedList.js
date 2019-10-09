@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import BreedItem from '../breed-item/BreedItem'
-import _ from 'lodash'
+import Loading from '../loading/Loading'
 
 export default class BreedList extends Component {
     state = {
@@ -38,14 +38,23 @@ export default class BreedList extends Component {
         )
     }
 
-    render() {
-        // console.log(this.state.breeds)
+    renderBreedList() {
         return (
             <div>
-                {_.isEmpty(this.state.breeds) && 'Loading...'}
+                <h2>Breed List</h2>
                 <div>
                     {this.state.breeds.map(breed => <BreedItem item={breed} />)}
                 </div>
+            </div>
+        )
+    }
+
+    render() {
+        return (
+            <div>
+                {this.state.breeds.length === 0 ?
+                    <Loading /> :
+                    this.renderBreedList()}
             </div>
         )
     }
